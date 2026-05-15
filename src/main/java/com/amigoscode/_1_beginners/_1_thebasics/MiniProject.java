@@ -1,5 +1,6 @@
 package com.amigoscode._1_beginners._1_thebasics;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -15,6 +16,7 @@ public class MiniProject {
 
         // TODO: 1 - Create a Scanner for user input
 
+        Scanner scan = new Scanner(System.in);
 
         // TODO: 2 - Display a menu with the following options:
         // Print:
@@ -25,13 +27,29 @@ public class MiniProject {
         //   "4. Divide"
         //   "Choose an operation (1-4): "
 
+        System.out.println("=== Simple Calculator ===");
+        System.out.println("1. Add");
+        System.out.println("2. Subtract");
+        System.out.println("3. Multiply");
+        System.out.println("4. Divide");
+        System.out.print("Choose an operation (1-4): ");
+
+
+
+
+
+
 
         // TODO: 3 - Read the user's choice into an int variable
-
+        int input = scan.nextInt();
 
         // TODO: 4 - Prompt and read two double numbers from the user
         // Print "Enter first number: " and read it.
         // Print "Enter second number: " and read it.
+        System.out.println("Enter First number: ");
+        int firstNumber = scan.nextInt();
+        System.out.println("Enter Second number: ");
+        int secondNumber = scan.nextInt();
 
 
         // TODO: 5 - Use a switch statement to perform the chosen operation and print the result
@@ -40,6 +58,30 @@ public class MiniProject {
         // Case 3: Print "Result: " + (num1 * num2)
         // Case 4: Perform division (but handle division by zero first - see TODO 6)
         // Default: Print "Invalid choice"
+
+        switch (input){
+            case 1:
+                System.out.println("Result: " + (firstNumber + secondNumber));
+                break;
+            case 2:
+                System.out.println("Result: " + (firstNumber - secondNumber));
+                break;
+
+            case 3:
+                System.out.println("Result: " + (firstNumber * secondNumber));
+                break;
+
+            case 4:
+                if (secondNumber == 0){
+                    System.out.println("cannot divide by zero");
+                }else{
+                    System.out.println("Result: " + (firstNumber / secondNumber));
+                }
+                break;
+            default:
+                System.out.println("Invalid operation");
+                break;
+        }
 
 
         // TODO: 6 - Inside case 4, handle division by zero with an if statement
