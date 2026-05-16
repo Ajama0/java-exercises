@@ -32,6 +32,8 @@ public class Variables {
 
         // TODO: 7 - Declare a final (constant) variable called MAX_SCORE, set it to 100, and print it
         // Hint: Use the 'final' keyword before the type to make a constant
+        final int MAX_SCORE = 100;
+        System.out.println(MAX_SCORE);
 
     }
 }
