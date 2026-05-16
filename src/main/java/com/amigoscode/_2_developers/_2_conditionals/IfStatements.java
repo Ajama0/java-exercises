@@ -8,6 +8,7 @@ package com.amigoscode._2_developers._2_conditionals;
  */
 public class IfStatements {
 
+
     /**
      * Returns "Even" if the number is even, "Odd" otherwise.
      * Must use the ternary operator (not if/else).
