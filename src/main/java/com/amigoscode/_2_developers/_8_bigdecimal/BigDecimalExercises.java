@@ -12,6 +12,7 @@ import java.math.RoundingMode;
  */
 public class BigDecimalExercises {
 
+
     /**
      * Creates a BigDecimal from a String representation.
      * IMPORTANT: Always use the String constructor, not the double constructor!
@@ -24,6 +25,7 @@ public class BigDecimalExercises {
         //  The String constructor preserves the exact decimal value.
         //  NEVER use new BigDecimal(0.1) — see TODO 6 for why.
         return null;
+
     }
 
     /**
