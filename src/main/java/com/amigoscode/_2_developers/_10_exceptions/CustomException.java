@@ -41,6 +41,14 @@ public class CustomException {
     //  If age < 0 or age > 150, throw a new InvalidAgeException with an appropriate message.
     //  Otherwise, print "Age " + age + " is valid."
 
+    public static void validateAge(int age) {
+        if(age < 0 || age > 150) {
+            throw new InvalidAgeException("Age must be between 0 and 150");
+        }else{
+            System.out.println("Age %s is valid".formatted(age));
+        }
+    }
+
 
     public static void main(String[] args) {
         System.out.println("=== Custom Checked Exception (InsufficientFundsException) ===");
@@ -50,6 +58,29 @@ public class CustomException {
         //  Catch the exception and print its message and the shortage amount.
         //  Also try validateAge with valid (25) and invalid (-5) values,
         //  catching InvalidAgeException.
+
+        BankAccount bankAccount = new BankAccount(100.0);
+
+        try {
+            bankAccount.withdraw(50);
+            System.out.println("Account balance is " + bankAccount.getBalance());
+
+            bankAccount.withdraw(75);
+            System.out.println("Account balance is " + bankAccount.getBalance());
+        }catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try{
+            validateAge(20);
+            System.out.println("age was valid");
+
+            validateAge(-5);
+
+        }catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+
 
 
         System.out.println("\n=== Exception Chaining ===");
@@ -61,6 +92,8 @@ public class CustomException {
         //  In an outer try-catch, catch the InvalidAgeException and print:
         //  - The exception message
         //  - The cause (using getCause())
+
+
 
     }
 }
