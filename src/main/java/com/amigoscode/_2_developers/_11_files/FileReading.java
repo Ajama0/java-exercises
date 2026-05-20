@@ -30,7 +30,9 @@ public class FileReading {
     public static List<String> readAllLines(String filePath) throws IOException {
         // TODO: 1 - Use Files.readAllLines(Path.of(filePath)) to read all lines.
         //  Return the resulting List<String>.
-        return null;
+        List<String> fileLines = Files.readAllLines(Path.of(filePath));
+        return fileLines;
+
     }
 
     /**
@@ -47,6 +49,16 @@ public class FileReading {
         //      Print each line.
         //  }
 
+        /**
+         * this automatically closes the object
+         */
+        try(BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            if(br.readLine() != null) {
+                System.out.println(br.readLine());
+            }
+        }
+
+
     }
 
     /**
@@ -60,7 +72,9 @@ public class FileReading {
         // TODO: 3 - Read the file line by line and count the lines.
         //  You can use Files.readAllLines() and call .size(),
         //  or use Files.lines() with .count() for a stream-based approach.
-        return 0;
+
+        return Files.lines(Path.of(filePath)).count();
+
     }
 
     /**
@@ -76,7 +90,9 @@ public class FileReading {
         //  Filter the lines to only include those that contain the given word.
         //  Hint: use a for loop and an ArrayList to collect matching lines,
         //  or use Files.readAllLines().stream().filter(...).toList()
-        return null;
+
+       return Files.readAllLines(Path.of(filePath)).stream().filter(line -> line.contains(word)).toList();
+
     }
 
     /**
@@ -89,7 +105,7 @@ public class FileReading {
     public static String readFileAsString(String filePath) throws IOException {
         // TODO: 5 - Use Files.readString(Path.of(filePath)) to read the entire file
         //  as a single String. Return it.
-        return null;
+        return Files.readString(Path.of(filePath));
     }
 
     /**
@@ -103,7 +119,16 @@ public class FileReading {
         //  Catch FileNotFoundException (or NoSuchFileException) and return
         //  "File not found: " + filePath.
         //  Catch IOException and return "Error reading file: " + e.getMessage().
-        return null;
+
+        try{
+            Files.readString(Path.of(filePath));
+        }catch(FileNotFoundException e){
+            return "File not found" + filePath;
+
+        }catch(IOException e){
+            return "error reading file" + e.getMessage();
+        }
+        return filePath;
     }
 
     public static void main(String[] args) throws IOException {
