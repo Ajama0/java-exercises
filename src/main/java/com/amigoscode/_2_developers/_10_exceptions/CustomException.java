@@ -76,7 +76,7 @@ public class CustomException {
             System.out.println("age was valid");
 
             validateAge(-5);
-
+            System.out.println("age was invalid");
         }catch (InvalidAgeException e) {
             System.out.println(e.getMessage());
         }
@@ -92,6 +92,18 @@ public class CustomException {
         //  In an outer try-catch, catch the InvalidAgeException and print:
         //  - The exception message
         //  - The cause (using getCause())
+
+        try {
+            try {
+                Integer.parseInt("1x");
+            } catch (NumberFormatException e) {
+                throw new InvalidAgeException("throwing invalid age exception", e);
+            }
+        }catch(InvalidAgeException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+
+        }
 
 
 
