@@ -13,6 +13,39 @@ public class EnumExercises {
     //  SPRING, SUMMER, AUTUMN, WINTER
     //  For now, just declare them without any fields or methods.
 
+    enum Season{
+        SUMMER("Flowers"),
+        AUTUMN("cold"),
+        WINTER("snow");
+
+
+        private final String description;
+
+        Season(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+    }
+
+    enum Priority{
+        LOW(1),
+        MEDIUM(2),
+        HIGH(3);
+
+        private final int level;
+
+        Priority(int level) {
+            this.level = level;
+        }
+
+        private int getLevel() {
+            return level;
+        }
+    }
+
 
     // TODO: 2 - Modify the Season enum to add:
     //  - A private final String 'description' field
@@ -21,6 +54,8 @@ public class EnumExercises {
     //    SPRING("Flowers bloom"), SUMMER("Sun shines"),
     //    AUTUMN("Leaves fall"), WINTER("Snow falls")
     //  Note: Enum constructors are always private (even without the keyword).
+
+
 
 
     // TODO: 3 - Add a method getDescription() to the Season enum that
@@ -43,6 +78,22 @@ public class EnumExercises {
         //  using the getDescription() method.
         //  Test with Season.SUMMER.
 
+        Season season = Season.SUMMER;
+        switch(season) {
+            case SUMMER:
+                System.out.println(Season.SUMMER.getDescription());
+            break;
+
+            case AUTUMN: System.out.println(Season.AUTUMN.getDescription());
+            break;
+
+            case WINTER:
+                System.out.println(Season.WINTER.getDescription());
+            break;
+
+            default: break;
+        }
+
 
         System.out.println("\n=== Iterate Over Enum Values ===");
         // TODO: 6 - Use Season.values() to get an array of all Season constants.
@@ -50,5 +101,12 @@ public class EnumExercises {
         //  Example output: "0: SPRING - Flowers bloom"
         //  Also iterate over Priority.values() and print each with its level.
 
+        for (Season seasonValue : Season.values()) {
+            System.out.println(seasonValue.getDescription());
+        }
+
+        for(Priority priorityValue : Priority.values()) {
+            System.out.println(priorityValue.getLevel());
+        }
     }
 }
