@@ -14,6 +14,41 @@ public class ClassesAndObjects {
     //  - A private String field 'name'
     //  - A private int field 'age'
 
+    static class Person{
+        private String name;
+        private int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+
+        }
+
+        public Person() {
+            this("unknown", 0);
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "age=" + age +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) return false;
+            Person person = (Person) o;
+            return age == person.age && Objects.equals(name, person.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, age);
+        }
+    }
+
 
     // TODO: 2 - Add a constructor to Person that takes String name and int age,
     //  and assigns them to the fields.
@@ -55,6 +90,21 @@ public class ClassesAndObjects {
         //  it avoids duplicating initialization logic.
         //  The no-args constructor you created in TODO 3 already demonstrates this.
         //  Print: "No-args person: " + the no-args person to show the defaults.
+
+        Person person1 = new Person("Alice", 30);
+        Person person2 = new Person();
+        Person person3 = new Person("Alice", 30);
+
+        System.out.println(person1);
+        System.out.println(person2);
+        System.out.println(person3);
+
+        System.out.println(person1.equals(person3)); // true — same name and age
+        System.out.println(person1.equals(person2)); // false — different values
+
+        // Constructor chaining — no-args constructor calls the two-arg constructor
+        // using this("Unknown", 0) to avoid duplicating initialisation logic
+        System.out.println("No-args person: " + person2);
 
     }
 }
