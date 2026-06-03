@@ -1,0 +1,31 @@
+package com.amigoscode._3_oop._4_polymorphism;
+
+public class PayPalPayment implements Payment {
+
+
+    // TODO: 3 - Create a PayPalPayment class that implements Payment.
+//   - Add a private field: email (String)
+//   - Create a constructor that takes the email
+//   - Implement processPayment() to print:
+//     "Processing PayPal payment of $<amount> from <email>"
+//     and return true
+//   - Implement getPaymentMethod() to return "PayPal"
+
+
+    private String email;
+
+    public PayPalPayment(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public Boolean processPayment(double amount) {
+        System.out.println("Paypal payment of: " + amount + " from " + email);
+        return true;
+    }
+
+    @Override
+    public String getPaymentMethod() {
+        return "PayPal";
+    }
+}
