@@ -49,6 +49,28 @@ public class SolidExercises {
     //   constructor injection and has a createUser(name, email) method.
 
 
+
+    static class UserManager{
+        private final UserNotifier userNotifier;
+        private final UserRepository userRepository;
+        private final UserValidator userValidator;
+
+
+        public UserManager(UserNotifier userNotifier, UserRepository userRepository, UserValidator userValidator) {
+            this.userNotifier = userNotifier;
+            this.userRepository = userRepository;
+            this.userValidator = userValidator;
+        }
+
+
+        void createUser(String name, String email) {
+            userValidator.validateUser(name, email);
+            userRepository.saveUser(name, email);
+            userNotifier.notify(email);
+
+        }
+
+    }
     // =========================================================================
     // OCP - Open/Closed Principle
     // "Open for extension, closed for modification."
@@ -76,6 +98,18 @@ public class SolidExercises {
     //     that just calls discount.apply(price)
     //   Now new discount types can be added without modifying DiscountCalculator.
 
+
+    static class DiscountCalculator {
+        private final Discount discount;
+
+        public DiscountCalculator(Discount discount) {
+            this.discount = discount;
+        }
+
+        double calculate(double price) {
+            return discount.calculateDiscount(price);
+        }
+    }
 
     // =========================================================================
     // LSP - Liskov Substitution Principle
@@ -177,6 +211,21 @@ public class SolidExercises {
     //     (constructor injection) and uses it in generateReport()
 
 
+    static class ReportGenerator {
+        private final Database database;
+
+        ReportGenerator(Database database) {
+            this.database = database;
+        }
+        String generateReport() {
+            return database.query("SELECT * FROM reports");
+        }
+
+
+
+
+    }
+
     // =========================================================================
     // Main method to test all exercises
     // =========================================================================
@@ -186,15 +235,47 @@ public class SolidExercises {
         // TODO: 6 - Test SRP: Create UserValidator, UserRepository, UserNotifier,
         //   and a refactored UserManager. Call createUser("Alice", "alice@test.com").
 
+        UserValidator userValidator = new UserValidator();
+        UserRepository userRepository = new UserRepository();
+        UserNotifier userNotifier = new UserNotifier();
+
+
+        UserManager userManager = new UserManager(userNotifier, userRepository, userValidator);
+        userManager.createUser("John", "john@gmail.com");
+
+        System.out.println();
+
 
         // TODO: 7 - Test OCP: Create a DiscountCalculator and several Discount
         //   implementations. Calculate discounts for a $100 item and print results.
+        ClearanceDiscount clearanceDiscount = new ClearanceDiscount();
+        SeasonalDiscount seasonalDiscount = new SeasonalDiscount();
+        DiscountCalculator calculateClearance = new DiscountCalculator(clearanceDiscount);
+        System.out.println(calculateClearance.calculate(21.99));
+
+
+        DiscountCalculator calculateSeasonal = new DiscountCalculator(seasonalDiscount);
+        System.out.println(calculateSeasonal.calculate(100.99));
+
+        System.out.println();
+
 
 
         // TODO: 8 - Test DIP: Create a ReportGenerator with MySQLDatabase,
         //   generate a report. Then create another with PostgreSQLDatabase
         //   and generate a report. Print both results to show the
         //   implementation was swapped without changing ReportGenerator.
+
+        MySqlDatabase sqlDatabase = new MySqlDatabase();
+        ReportGenerator reportGenerator = new ReportGenerator(sqlDatabase);
+        System.out.println(reportGenerator.generateReport());
+
+
+        PostgresDatabase postgresDatabase = new PostgresDatabase();
+        ReportGenerator reportGenerator2 = new ReportGenerator(postgresDatabase);
+        System.out.println(reportGenerator2.generateReport());
+
+
 
     }
 }
