@@ -4,6 +4,7 @@ package com.amigoscode._4_datastructures._2_arraylist;
 // Learn the fundamental operations of ArrayList - Java's resizable array implementation.
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArrayListBasics {
 
@@ -11,27 +12,39 @@ public class ArrayListBasics {
 
         // TODO: 1 - Create an ArrayList of Strings called 'names'
 
+        List<String> names = new ArrayList<>();
 
         // TODO: 2 - Add 5 names to the list: "Alice", "Bob", "Charlie", "Diana", "Eve"
+        names.add("John");
+        names.add("Jane");
+        names.add("charlie");
+        names.add("bob");
+        names.add("diana");
 
 
         // TODO: 3 - Get the element at index 2 and print it
         //           Expected output: Charlie
+        System.out.println(names.get(2));
 
 
         // TODO: 4 - Check if the name "Bob" is in the list using contains()
         //           Print the result (true or false)
+        System.out.println(names.contains("bob"));
 
 
         // TODO: 5 - Remove the name "Diana" from the list by value
         //           Print the list after removal
+        names.remove("diana");
+        System.out.println(names);
 
 
         // TODO: 6 - Get and print the size of the list
+        System.out.println(names.size());
 
 
         // TODO: 7 - Iterate using a for-each loop and print each name
         //           Format: "Name: <name>"
+        names.forEach(System.out::println);
 
     }
 }
