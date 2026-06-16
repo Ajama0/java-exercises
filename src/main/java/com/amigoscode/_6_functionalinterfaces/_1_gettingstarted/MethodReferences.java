@@ -3,6 +3,7 @@ package com.amigoscode._6_functionalinterfaces._1_gettingstarted;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -25,11 +26,16 @@ public class MethodReferences {
         // TODO: 1 - Use a static method reference to create a
         //  Function<Integer, String> that converts an Integer to a String.
         //  Use String::valueOf. Apply it to the number 42 and print the result.
+        Function<Integer, String> function = String::valueOf;
+        System.out.println(function.apply(42));
+
 
 
         // TODO: 2 - Use an instance method reference on a specific object to
         //  create a java.util.function.Consumer<String>.
         //  Use System.out::println. Then call accept("Hello from method ref!").
+        Consumer<String> consumer = System.out::println;
+        consumer.accept("Hello from method references");
 
 
         // TODO: 3 - Use an instance method reference on the parameter to create
@@ -40,12 +46,15 @@ public class MethodReferences {
         // TODO: 4 - Use a constructor reference to create a Supplier<ArrayList<String>>
         //  that creates a new empty ArrayList. Use ArrayList::new.
         //  Call get() and print the resulting list.
+        Supplier<ArrayList<String>> supplier = ArrayList::new;
+        System.out.println(supplier.get());
 
 
         List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
 
         // TODO: 5 - Use a method reference with forEach to print each name
         //  in the names list. Use System.out::println as the method reference.
+        names.forEach(System.out::println);
 
 
         // TODO: 6 - Compare lambda vs method reference side by side.
@@ -54,5 +63,15 @@ public class MethodReferences {
         //    b) 'withMethodRef' using method reference: String::length
         //  Apply both to "Hello" and print the results to confirm they are equal.
 
+        Function<String,Integer> withLambda = (str) -> str.length();
+        System.out.println(withLambda.apply("Alice"));
+
+        Function<String, Integer> withMethodRef = String::length;
+        System.out.println(withMethodRef.apply("Alice"));
+
+
+
     }
+
+
 }

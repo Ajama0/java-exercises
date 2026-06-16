@@ -10,21 +10,30 @@ public class StackExercises {
     public static void main(String[] args) {
 
         // TODO: 1 - Create a Stack of Strings called 'stack'
-
+        Stack<String> stack = new Stack<>();
 
         // TODO: 2 - Push 5 elements onto the stack: "Java", "Python", "C++", "JavaScript", "Go"
+        stack.push("java");
+        stack.push("python");
+        stack.push("C++");
+        stack.push("Javascript");
+        stack.push("Go");
 
 
         // TODO: 3 - Peek at the top element without removing it
         //           Print the result (should be "Go")
+        System.out.println(stack.peek());
+
 
 
         // TODO: 4 - Pop an element from the stack and print it
         //           Then print the stack to see the remaining elements
+        System.out.println(stack.pop());
 
 
         // TODO: 5 - Check if the stack is empty using isEmpty()
         //           Print the result
+        System.out.println(stack.isEmpty());
 
 
         // --- String Reversal ---
@@ -33,6 +42,15 @@ public class StackExercises {
         // TODO: 6 - Use a Stack to reverse the string 'original'
         //           Push each character onto a stack, then pop them all to build the reversed string
         //           Print both original and reversed strings
+
+        Stack<String> reversedStack = new Stack<>();
+        for (int i = 0; i < original.length(); i++) {
+            reversedStack.push(original.substring(i, i + 1));
+        }
+
+        System.out.println(original);
+        System.out.println(reversedStack.stream().map(i-> reversedStack.pop()));
+
 
 
         // --- Balanced Brackets ---
