@@ -25,17 +25,21 @@ public class ConsumerExercise {
         // TODO: 1 - Create a Consumer<String> called 'greeter' that prints
         //  "Hello, <name>!" for a given name.
         //  Example: accept("Alice") prints "Hello, Alice!"
+        Consumer<String> greeter = name -> System.out.println("Hello " + name);
 
 
         // TODO: 2 - Create a Consumer<String> called 'shouter' that prints
         //  the string in uppercase.
         //  Example: accept("hello") prints "HELLO"
-
+        Consumer<String> shouter = s -> System.out.println(s.toUpperCase());
+        shouter.accept("Hello");
 
         // TODO: 3 - Chain 'greeter' and 'shouter' using andThen() to create
         //  a new Consumer called 'greetThenShout'. When you call
         //  greetThenShout.accept("Alice"), it should first print the greeting,
         //  then print "ALICE".
+        Consumer<String> greetThenShout = greeter.andThen(shouter);
+        greetThenShout.accept("Alice");
 
 
         // TODO: 4 - Create a BiConsumer<String, Integer> called 'printNameAge'
@@ -47,10 +51,13 @@ public class ConsumerExercise {
 
         // TODO: 5 - Use 'greeter' with the forEach method on the names list
         //  to greet each person.
+        names.forEach(greeter::accept);
 
 
         // TODO: 6 - Call the processAll method below, passing 'shouter'
         //  and the names list.
+        processAll(shouter,names);
+
 
 
         Map<String, Integer> scores = new HashMap<>();
