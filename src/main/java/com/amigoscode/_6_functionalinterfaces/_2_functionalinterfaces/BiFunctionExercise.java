@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Exercise: BiFunction<T, U, R>
@@ -25,11 +26,16 @@ public class BiFunctionExercise {
         // TODO: 1 - Create a BiFunction<String, String, String> called 'combiner'
         //  that concatenates two strings with a space in between.
         //  Example: ("John", "Doe") -> "John Doe"
+        BiFunction<String, String, String> combiner = (fname, lname) ->
+                "%s %s".formatted(fname, lname);
+        System.out.println(combiner.apply("John", "Doe"));
 
 
         // TODO: 2 - Create a BiFunction<Integer, Integer, Integer> called 'max'
         //  that returns the larger of two integers.
         //  Hint: You can use Math.max or a ternary expression.
+        BiFunction<Integer, Integer, Integer> max = (f1, f2) -> Math.max(f1, f2);
+        System.out.println(max.apply(1, 2));
 
 
         // TODO: 3 - Create a BiFunction<String, Integer, String> called 'repeat'
@@ -42,6 +48,9 @@ public class BiFunctionExercise {
         //  that returns the length of the combined string.
         //  Apply it to ("Hello", "World") and print the result.
         //  Expected: 11 (length of "Hello World")
+        Function<String, Integer> temp = String::length;
+
+        System.out.println(combiner.andThen(temp).apply("Hello", "world"));
 
 
         List<String> firstNames = Arrays.asList("Alice", "Bob", "Charlie");
@@ -54,6 +63,17 @@ public class BiFunctionExercise {
         //  Hint: IntStream.range(0, firstNames.size())
         //          .mapToObj(i -> describe.apply(firstNames.get(i), ages.get(i)))
         //          .collect(Collectors.toList())
+
+        BiFunction<String, Integer, String> describe = (name, age) ->
+                "%s is %s years old".formatted(name, age);
+
+        List<String> streams = IntStream.range(0, firstNames.size())
+                .mapToObj(i -> describe.apply(firstNames.get(i), ages.get(i)))
+                .toList();
+
+        streams.forEach(System.out::println);
+
+
 
     }
 }
