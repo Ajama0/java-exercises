@@ -23,10 +23,18 @@ public class CallbackExercise {
         //    a) with simulateSuccess = true
         //    b) with simulateSuccess = false
 
+        Consumer<String> consumer = System.out::println;
+        Consumer<String> consumer2 = System.out::println;
+        fetchData(true, consumer, consumer2);
+        fetchData(false, consumer, consumer2);
+
 
         // TODO: 5 - Call processAsync with:
         //  - task: a Runnable that prints "Processing data..."
         //  - onComplete: a Runnable that prints "Processing complete!"
+        Runnable runnable = () -> System.out.println("processing data");
+        Runnable runnable2 = ()-> System.out.println("processing complete");
+        processAsync(runnable, runnable2);
 
 
         // TODO: 6 - Use callbacks to chain operations. Call performSteps below
@@ -44,6 +52,18 @@ public class CallbackExercise {
     //  If simulateSuccess is false, call onFailure with "Connection timed out"
 
 
+    static void fetchData(boolean simulateSuccess, Consumer<String> onSuccess, Consumer<String> onFailure) {
+        if(simulateSuccess) {
+            System.out.println("Fetching data....");
+            onSuccess.accept("{ \"id\": 1, \"name\": \"Alice\" }");
+        }else{
+            System.out.println("Fetching data....");
+            onFailure.accept("Connection timed out");
+        }
+
+    }
+
+
     // TODO: 2 - Inside fetchData (from TODO 1), before calling the callbacks,
     //  print "Fetching data..." to simulate work being done.
 
@@ -53,6 +73,12 @@ public class CallbackExercise {
     //    Runnable onComplete
     //  It should run the task first, then call onComplete.
     //  Print "Starting process..." before the task and "Done." after onComplete.
+    static void processAsync(Runnable task, Runnable onComplete) {
+        System.out.println("Starting process");
+        task.run();
+        onComplete.run();
+        System.out.println("Completed process");
+    }
 
 
     /**
