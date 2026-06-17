@@ -44,5 +44,8 @@ public class ForEachAndCollect {
         //           Print the resulting LinkedList and its class name to verify the type
         //           Hint: Collectors.toCollection(LinkedList::new)
 
+        LinkedList<String> temp = languages.stream().collect(Collectors.toCollection(LinkedList::new));
+        System.out.println(temp.getClass());
+
     }
 }

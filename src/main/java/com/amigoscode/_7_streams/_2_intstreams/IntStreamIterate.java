@@ -25,6 +25,8 @@ public class IntStreamIterate {
         //           The hasNext predicate should stop when the value exceeds 100
         //           Print each number
 
+        IntStream.iterate(7,  value -> value <=100, value -> value + 7).forEach(System.out::println);
+
 
         // TODO: 3 - Use IntStream.iterate to generate a Fibonacci-like sequence
         //           Since iterate works with single values, use a trick:

@@ -21,6 +21,7 @@ public class IntStreamBasics {
         // TODO: 1 - Create an IntStream using IntStream.range(1, 11)
         //           This generates numbers 1 to 10 (end exclusive)
         //           Print each number using forEach
+        IntStream.range(1,11).forEach(System.out::println);
 
 
         // TODO: 2 - Create an IntStream using IntStream.rangeClosed(1, 10)
@@ -31,9 +32,13 @@ public class IntStreamBasics {
         //           a Stream<Integer> using boxed()
         //           Collect the result to a List<Integer> and print it
 
+        List<Integer> list = IntStream.range(1,11).boxed().toList();
+        System.out.println(list);
+
 
         // TODO: 4 - Create an IntStream using IntStream.of(10, 20, 30, 40, 50)
         //           Print each value
+        IntStream.of(10,20,30,40,50).forEach(System.out::println);
 
 
         // TODO: 5 - Create an IntStream of the values 85, 90, 78, 92, 88
@@ -45,6 +50,8 @@ public class IntStreamBasics {
         //           Find and print both the min and max values
         //           Note: You cannot reuse a stream, so create the IntStream twice
         //           or use summaryStatistics()
+        IntStream.of(15,3,42,7,28).min().ifPresent(System.out::println);
+        IntStream.of(15,3,42,7,28).max().ifPresent(System.out::println);
 
     }
 }

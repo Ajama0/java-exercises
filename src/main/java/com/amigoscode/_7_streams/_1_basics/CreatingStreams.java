@@ -2,6 +2,7 @@ package com.amigoscode._7_streams._1_basics;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -21,14 +22,18 @@ public class CreatingStreams {
 
         // TODO: 1 - Create a stream from the 'names' list and print each element
         //           Use the .stream() method on the list
-
+        names.stream().forEach(System.out::println);
 
         // TODO: 2 - Create a stream from the 'fruits' array using Arrays.stream()
         //           and print each element
+        Arrays.stream(fruits).forEach(System.out::println);
+
+
 
 
         // TODO: 3 - Create a stream using Stream.of() with the values "Red", "Green", "Blue"
         //           and print each element
+        Stream.of("red", "green", "blue").forEach(System.out::println);
 
 
         // TODO: 4 - Create an empty stream using Stream.empty()
